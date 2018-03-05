@@ -1,4 +1,4 @@
-该篇是web综合部分，主要包含了HTML(HTML5)、http、页面优化及其他一些概念性的问题
+> 该篇是web综合部分，主要包含了HTML(HTML5)、http、跨域、页面优化及其他一些概念性的问题
 
 ### doctype是什么？标准模式与兼容模式各有什么区别?
 
@@ -112,6 +112,22 @@ POST 方法
 - 不会保留在浏览器历史记录中
 - 不能被收藏为书签
 - 对数据长度没有要求
+
+### 怎么处理跨域？
+
+跨域的处理主要有下面几种方式：
+
+- jsonp跨域
+- document.domain + iframe跨域
+- location.hash + iframe跨域
+- window.name + iframe跨域
+- postMessage跨域
+- 跨域资源共享（CORS）
+- nginx代理跨域
+- Nodejs中间件代理跨域
+- WebSocket协议跨域
+
+基本使用与分析可以参考：[前端常见跨域解决方案（全）](https://segmentfault.com/a/1190000011145364)
 
 ### 如何实现浏览器内多个标签页之间的通信? (阿里)
 

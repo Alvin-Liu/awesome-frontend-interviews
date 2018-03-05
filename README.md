@@ -6,9 +6,9 @@
 
 预计会从下面几个方面进行整理一些比较好的、常见的问题：
 
-- [web综合](./web综合篇.md "web综合面试题")(包括HTML、HTTP等)
+- [web综合](./web综合篇.md "web综合面试题")(包括HTML、HTTP、跨域、优化等)
 - CSS(包括CSS预处理器、CSS Modules等)
-- JavaScript(包括jQuery，ES6、跨域、算法等)
+- JavaScript(包括jQuery，ES6、算法等)
 - 主流框架(主要vue，其他框架使用较少，为了避免基本知识出错，误人子弟，近段时间不打算整理)
 - 前端工程化(包括webpack、gulp、git等)
 - nodejs(整理常见基本知识)
