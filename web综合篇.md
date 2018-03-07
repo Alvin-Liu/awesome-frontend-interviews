@@ -197,3 +197,13 @@ WebSocket、SharedWorker，也可以调用localstorge、cookies等本地存储�
 - 不滥用web字体,web字体需要下载，解析，重绘当前页面，尽量减少使用
 - 合理使用requestAnimationFrame动画代替setTimeout
 - CSS中的属性（CSS3 transitions、CSS3 3D transforms、opacity、canvas、webGL、video）会触发GPU渲染，要合理使用，过渡使用会引发手机过耗电增加
+
+### 以前端角度出发做好SEO需要考虑什么？
+
+- 了解搜索引擎如何抓取网页和如何索引网页
+- 合理的title, meta标签优化(description, keywords)
+- 重要的html代码放前面
+- 少用iframe, 搜索引擎不会抓取iframe中的内容
+- 图片加上alt
+- 了解主要的搜索引擎
+- 合理的标签使用

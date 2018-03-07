@@ -62,6 +62,45 @@ Flash Of Unstyled Content：用户定义样式表加载之前浏览器使用默�
 
 上次在掘金上看到有人在争关于em的话题，一方说em是相对于父元素的大小，这也是网上被引用的比较多的解释，另一方说em是相对于自己本身的字体大小。争议的根源是`font-size`具有继承性，它的对错请自己分辨，不过有争议是好事，争议让我们更深入的了解问题。（既然说到继承了，面试官会不会说：假设我们认为em是继承的，请用ES6面向对象简单还原一下我们的问题，然后又是其他一堆东西...）
 
+### css清除浮动的几种方式
+
+- `clear:both`
+- `overflow`（hidden和auto可以清除浮动，visible不行）
+- clearfix
+
+clearfix方法一：
+
+利用:after和:before来在元素内部插入两个元素块,其实现原理类似于clear:both方法(只使用clearfix:after时在跨浏览器兼容问题会存在一个垂直边距叠加的bug)
+
+    .clearfix:before,
+    .clearfix:after {
+       content: ".";
+       display: block;
+       height: 0;
+       visibility: hidden;
+    }
+    .clearfix:after {clear: both;}
+    .clearfix {zoom: 1;} /* IE < 8 */
+
+clearfix方法二：
+
+Nicolsa在《[Better float containment in IE using CSS expressions](http://nicolasgallagher.com/better-float-containment-in-ie/)》中介绍的方法
+
+    .clearfix:before,
+    .clearfix:after {
+      content:"";
+      display:table;
+    }
+    .clearfix:after {
+      clear:both;
+      overflow:hidden;
+    }
+    .clearfix {
+      zoom:1; /* IE < 8 */
+    }
+
+参考：[Clear Float](https://www.w3cplus.com/css/clear-float)
+
 ### BFC是什么?怎么触发？有什么用？
 
 BFC 即 Block Formatting Contexts (块级格式化上下文)，是 W3C CSS2.1 规范中的一个概念。它是页面中的一块渲染区域，并且有一套渲染规则，它决定了其子元素将如何定位，以及和其他元素的关系和相互作用。
@@ -84,6 +123,36 @@ BFC作用：
 
 - [BFC和hasLayout](http://www.cnblogs.com/pigtail/archive/2013/01/23/2871627.html)
 - [10 分钟理解 BFC 原理](https://zhuanlan.zhihu.com/p/25321647)
+
+### 重绘和回流（重排）是什么，如何优化？
+
+- Reflow（回流）：当Render Tree中的一部分（或全部）因为元素的尺寸、布局、隐藏等改变而需要重新构建。这就称为回流
+- Repaint（重绘）：当Render Tree中的一些元素需要更新属性，而这些属性只是影响元素的外观、风格、而不会影响布局的，就是重绘
+
+**重绘（Repaint）不一定会引起回流（Reflow重排），但回流必将引起重绘（Repaint）**
+
+导致Reflow（回流）的情况：
+
+- 页面首次加载
+- 添加或者删除可见的DOM元素；
+- 元素位置改变；
+- 元素尺寸改变——边距、填充、边框、宽度和高度
+- 内容改变——比如文本改变或者图片大小改变而引起的计算值宽度和高度改变；
+- 页面渲染初始化；
+- 浏览器窗口尺寸改变——resize事件发生时；
+
+减少回流、重绘其实就是需要减少对render tree的操作（合并多次多DOM和样式的修改），并减少对一些style信息的请求，尽量利用好浏览器的优化策略。具体方法有：
+
+- 直接改变className，如果动态改变样式，则使用cssText（考虑没有优化的浏览器）
+- 让要操作的元素进行”离线处理”，处理完后一起更新
+- 不要经常访问会引起浏览器flush队列的属性，如果你确实要访问，利用缓存
+- 让元素脱离动画流，减少回流的Render Tree的规模
+
+参考：[页面重绘和回流以及优化](http://www.css88.com/archives/4996)
+
+### rgba()和opacity的透明效果有什么不同？
+
+rgba()和opacity都能实现透明效果，但最大的不同是opacity作用于元素，以及元素内的所有内容的透明度，而rgba()只作用于元素的颜色或其背景色。（设置rgba透明的元素的子元素不会继承透明效果！）
 
 ### 如果需要手动写动画，你认为最小时间间隔是多久，为什么？（阿里）
 
@@ -118,15 +187,23 @@ CSS Hack大致有3种表现形式，CSS属性前缀法、选择器前缀法以�
 
 ### css布局
 
-一般布局相关的面试题:
+一般布局相关的整理:
 
 - 如何水平居中一个元素（区分单行、多行）
 - 如何竖直居中一个元素（区分居中元素有高度和没有高度的情况）
 - 左侧固定，右侧自适应
 - 右侧固定，左侧自适应
 - 两边固定，中间自适应
+- Flex布局
+- Grid布局
 
-[【整理】CSS布局方案](https://segmentfault.com/a/1190000010989110)
+布局相关的文章：
+
+- [盘点8种CSS实现垂直居中水平居中的绝对定位居中技术](http://blog.csdn.net/freshlover/article/details/11579669)
+- [【整理】CSS布局方案](https://segmentfault.com/a/1190000010989110)
+- [一个完整的Flexbox指南](https://www.w3cplus.com/css3/a-guide-to-flexbox.html)
+- [CSS Grid布局这样玩](https://www.w3cplus.com/css3/playing-with-css-grid-layout.html)（深入了解的话，里面链接的文章可以多看看）
+
 
 
 
