@@ -1,3 +1,5 @@
+CSS重点：盒模型，常见布局和居中，CSS3的新特性，还有flex布局，grid布局。
+
 ### CSS的盒子模型有哪些？
 
 W3C标准盒模型：width = content
