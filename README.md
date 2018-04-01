@@ -6,9 +6,10 @@
 
 预计会从下面几个方面进行整理一些比较好的、常见的问题：
 
-- [web综合](./web综合篇.md)(包括HTML、HTTP、跨域、优化等)
+- [web综合](./web综合篇.md)(包括HTML、优化等)
 - [CSS](./CSS篇.md)(包括CSS预处理器、CSS Modules等)
 - [JavaScript](./JS篇.md)(包括jQuery，ES6、算法等)
+- [网络篇](./网络篇.md)(包括HTTP，跨域等)
 - 主流框架(主要[vue](https://github.com/Alvin-Liu/Blog/issues/13)，其他框架使用较少，为了避免基本知识出错，误人子弟，近段时间不打算整理)
 - 前端工程化(包括webpack、gulp、git等)
 - nodejs(整理常见基本知识)
