@@ -1,4 +1,4 @@
-> 该篇是web综合部分，主要包含了HTML(HTML5)、http、跨域、页面优化及其他一些概念性的问题
+> 该篇是web综合部分，主要包含了HTML(HTML5)、页面优化、安全等
 
 ### doctype是什么？标准模式与兼容模式各有什么区别?
 
@@ -31,8 +31,7 @@ HTML5 现在已经不是 SGML 的子集，主要是关于图像，位置，存�
 	  
 - 绘画 canvas;
 - 用于媒介回放的 video 和 audio 元素;
-- 本地离线存储 localStorage 长期存储数据，浏览器关闭后数据不丢失;
-- sessionStorage 的数据在浏览器关闭后自动删除;
+- 本地离线存储 localStorage 长期存储数据，浏览器关闭后数据不丢失;sessionStorage 的数据在浏览器关闭后自动删除;
 - 语意化更好的内容元素，比如 article、footer、header、nav、section;
 - 表单控件，calendar、date、time、email、url、search;
 - 新的技术webworker, websocket, Geolocation;
@@ -91,44 +90,6 @@ HTML结构的语义化是指通过使用包含语义的标签恰当地表示文�
 - 渐进增强：针对低版本浏览器进行构建页面，保证最基本的功能，然后再针对高级浏览器进行效果、交互等改进和追加功能达到更好的用户体验。
 - 优雅降级 ：一开始就构建完整的功能，然后再针对低版本浏览器进行兼容
 
-### HTTP中GET与POST的区别？
-
-关于这个题目，曾经有一篇文章一度很火：[99%的人都理解错了HTTP中GET与POST的区别](https://mp.weixin.qq.com/s?__biz=MzI3NzIzMzg3Mw==&mid=100000054&idx=1&sn=71f6c214f3833d9ca20b9f7dcd9d33e4#rd)，后来剧情反转，知乎出现一篇：[听说『99% 的人都理解错了 HTTP 中 GET 与 POST 的区别』？？](https://zhuanlan.zhihu.com/p/25028045)
-
-下面引用w3schools的解答：
-
-GET 方法
-
-- 可被缓存
-- 保留在浏览器历史记录中
-- 可被收藏为书签
-- 不应在处理敏感数据时使用
-- 有长度限制
-- 只应当用于取回数据
-
-POST 方法
-
-- 不会被缓存
-- 不会保留在浏览器历史记录中
-- 不能被收藏为书签
-- 对数据长度没有要求
-
-### 怎么处理跨域？
-
-跨域的处理主要有下面几种方式：
-
-- jsonp跨域
-- document.domain + iframe跨域
-- location.hash + iframe跨域
-- window.name + iframe跨域
-- postMessage跨域
-- 跨域资源共享（CORS）
-- nginx代理跨域
-- Nodejs中间件代理跨域
-- WebSocket协议跨域
-
-基本使用与分析可以参考：[前端常见跨域解决方案（全）](https://segmentfault.com/a/1190000011145364)
-
 ### 如何实现浏览器内多个标签页之间的通信? (阿里)
 
 WebSocket、SharedWorker，也可以调用localstorge、cookies等本地存储方式，监听localstorge的改变来触发一个事件，通过这个事件，控制它的值来进行页面信息通信（注意quirks：Safari 在无痕模式下设置localstorge值时会抛出 QuotaExceededError 的异常）
@@ -139,23 +100,6 @@ WebSocket、SharedWorker，也可以调用localstorge、cookies等本地存储�
 - ActiveX HTMLFile (IE)
 - 基于 multipart 编码发送 XHR
 - 基于长轮询的 XHR
-
-### 在浏览器中输入URL到整个页面显示在用户面前时这个过程中到底发生了什么？
-
-这个题目好像是必考题了，大神可以讲几天，推荐这篇文章：[从输入 URL 到页面加载完成的过程中都发生了什么事情？](http://fex.baidu.com/blog/2014/05/what-happen/ "从输入 URL 到页面加载完成的过程中都发生了什么事情？")
-
-从网上找到的简答版本如下：
-
-1. 浏览器会开启一个线程来处理这个请求，对 URL 分析判断如果是 http 协议就按照 Web 方式来处理;
-2. 调用浏览器内核中的对应方法，比如 WebView 中的 loadUrl 方法;
-3. 通过DNS解析获取网址的IP地址，设置 UA 等信息发出第二个GET请求;
-4. 进行HTTP协议会话，客户端发送报头(请求报头);
-5. 进入到web服务器上的 Web Server，如 Apache、Tomcat、Node.JS 等服务器;
-6. 进入部署好的后端应用，如 PHP、Java、JavaScript、Python 等，找到对应的请求处理;
-7. 处理结束回馈报头，此处如果浏览器访问过，缓存上有对应资源，会与服务器最后修改时间对比，一致则返回304;
-8. 浏览器开始下载html文档(响应报头，状态码200)，同时使用缓存;
-9. 文档树建立，根据标记请求所需指定MIME类型的文件（比如css、js）,同时设置了cookie;
-10. 页面开始渲染DOM，JS根据DOM API操作DOM,执行事件绑定等，页面显示完成
 
 ### 为什么利用多个域名来存储网站资源会更有效？
 
@@ -215,30 +159,6 @@ WebSocket、SharedWorker，也可以调用localstorge、cookies等本地存储�
 - Safari	webkit，JS引擎：Nitro
 - Firefox	Gecko，JS引擎：SpiderMonkey
 - Opera	    Presto->blink，JS引擎：Linear A（4.0-6.1）/ Linear B（7.0-9.2）/ Futhark（9.5-10.2）/ Carakan（10.5-）
-
-### 浏览器缓存
-
-浏览器缓存分为强缓存和协商缓存。当客户端请求某个资源时，获取缓存的流程如下：
-
-- 先根据这个资源的一些 http header 判断它是否命中强缓存，如果命中，则直接从本地获取缓存资源，不会发请求到服务器；
-- 当强缓存没有命中时，客户端会发送请求到服务器，服务器通过另一些request header验证这个资源是否命中协商缓存，称为http再验证，如果命中，服务器将请求返回，但不返回资源，而是告诉客户端直接从缓存中获取，客户端收到返回后就会从缓存中获取资源；
-- 强缓存和协商缓存共同之处在于，如果命中缓存，服务器都不会返回资源；
-- 区别是，强缓存不对发送请求到服务器，但协商缓存会。
-- 当协商缓存也没命中时，服务器就会将资源发送回客户端。
-- 当 ctrl+f5 强制刷新网页时，直接从服务器加载，跳过强缓存和协商缓存；
-- 当 f5 刷新网页时，跳过强缓存，但是会检查协商缓存；
-
-### 强缓存
-
-- Expires（该字段是 http1.0 时的规范，值为一个绝对时间的 GMT 格式的时间字符串，代表缓存资源的过期时间）
-- Cache-Control:max-age（该字段是 http1.1 的规范，强缓存利用其 max-age 值来判断缓存资源的最大生命周期，它的值单位为秒）
-
-### 协商缓存
-
-- Last-Modified（值为资源最后更新时间，随服务器response返回）
-- If-Modified-Since（通过比较两个时间来判断资源在两次请求期间是否有过修改，如果没有修改，则命中协商缓存）
-- ETag（表示资源内容的唯一标识，随服务器response返回）
-- If-None-Match（服务器通过比较请求头部的If-None-Match与当前资源的ETag是否一致来判断资源是否在两次请求之间有过修改，如果没有修改，则命中协商缓存）
 
 ### XSS 和 CSRF
 
