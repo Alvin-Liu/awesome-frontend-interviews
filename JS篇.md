@@ -1,5 +1,35 @@
 JS重点关注：作用域，变量提升，闭包，this，原型，继承，ES6等
 
+### ES6有什么内容？ES7？ES8？
+
+ES6：
+
+- let和const，块级作用域，不会变量提升
+- 解构，箭头函数（无this，this是定义时所在的对象，不能做构造函数）
+- 模板字符串
+- Object.assign（浅拷贝，所有可枚举）
+- 原始数据类型Symbol（Symbol值都是唯一的）
+- Set（类似数组，成员的值都是唯一的）、Map（类似对象，‘键’可以是各种类型的值）数据解构，WeakSet（类似Set，成员都是对象，弱引用），WeakMap（类似Map，只接受对象作为键名（null除外），WeakMap的键名所指向的对象，不计入垃圾回收机制）
+- Promise（三种状态：pending（进行中）、fulfilled（已成功）和rejected（已失败））
+- Class（类）（有静态属性，没有静态方法，不存在变量提升，extends继承，super（子类没有自己的this，必须在constructor中调用super方法））
+- 模块（export、import；CommonJS 模块输出的是一个值的拷贝，ES6 模块输出的是值的引用）
+- ...
+
+ES7：
+
+- 求幂运算符（**）(效果同Math.pow(3, 2)   // 9)
+- Array.prototype.includes()
+
+ES8：
+
+- 异步函数(Async functions)
+- Decorator修饰器
+- Object.entries()和Object.values()
+- padStart和padEnd
+- Object.getOwnPropertyDescriptors()
+- 函数参数列表与调用中的尾部逗号
+- 共享内存和原子
+
 ### let，const，var有什么区别？
 
 1. var定义的变量没有块级作用域，会出现变量提升，相同作用域内可以重复声明

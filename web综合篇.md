@@ -90,6 +90,20 @@ HTML结构的语义化是指通过使用包含语义的标签恰当地表示文�
 - 渐进增强：针对低版本浏览器进行构建页面，保证最基本的功能，然后再针对高级浏览器进行效果、交互等改进和追加功能达到更好的用户体验。
 - 优雅降级 ：一开始就构建完整的功能，然后再针对低版本浏览器进行兼容
 
+### 浏览器渲染流程
+
+1. 解析html以构建dom树：浏览器将HTML解析成树形的数据结构，浏览器将CSS解析成树形的数据结构
+2. 构建render树：DOM和CSSOM合并后生成Render Tree（display：none的东西不在render树中）
+3. 布局render树：有了Render Tree，浏览器已经能知道网页中有哪些节点、各个节点的CSS定义以及他们的从属关系，从而去计算出每个节点在屏幕中的位置
+4. 绘制render树：按照算出来的规则，通过显卡，把内容画到屏幕上
+
+[前端文摘：深入解析浏览器的幕后工作原理](http://www.cnblogs.com/lhb25/p/how-browsers-work.html)
+
+reflow（回流）和repaint（重绘）
+
+- reflow（回流）：当浏览器发现某个部分发生了点变化影响了布局，需要倒回去重新渲染
+- repaint（重绘）：改变某个元素的背景色、文字颜色、边框颜色等等不影响它周围或内部布局的属性时，屏幕的一部分要重画，但是元素的几何尺寸没有变
+
 ### 如何实现浏览器内多个标签页之间的通信? (阿里)
 
 WebSocket、SharedWorker，也可以调用localstorge、cookies等本地存储方式，监听localstorge的改变来触发一个事件，通过这个事件，控制它的值来进行页面信息通信（注意quirks：Safari 在无痕模式下设置localstorge值时会抛出 QuotaExceededError 的异常）
